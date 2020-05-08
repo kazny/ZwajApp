@@ -11,3 +11,6 @@ Ctrl+Shift+P type nuget
 >dotnet add package Microsoft.EntityFrameworkCore
 
 https://sqlitebrowser.org
+
+>dotnet ef migrations add CreateUserMigration
+tnet ef database update
