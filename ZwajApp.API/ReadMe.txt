@@ -14,3 +14,6 @@ https://sqlitebrowser.org
 
 >dotnet ef migrations add CreateUserMigration
 tnet ef database update
+
+add 
+>dotnet add package System.IdentityModel.Tokens.Jwt --version 6.5.1
