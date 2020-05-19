@@ -1,0 +1,17 @@
+<div *ngIf="!registerMode" class="rtl container mt-5">
+  <div style="text-align: center;">
+    <h2 style="font-family: JF FALT;">زواج ياتي لك بشريك في الحياة</h2>
+    <h5 style="font-family: JF FALT;">حياتك مع توأم روحك, أنت علي بعد خطوة من تحقيق حلمك</h5>
+    <div class="text-center">
+      <button (click)="registerToggle()"  style="font-family:JF FLAT;" class="btn btn-secondary btn-lg">اشترك معنا</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="registerMode" class="container mt-4" >
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <app-register [valuesFromRegister]="values" (cancelRegister)="cancelRegisterParent($event)"></app-register>
+    </div>
+  </div>
+</div>
+

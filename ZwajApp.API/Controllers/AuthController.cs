@@ -48,8 +48,9 @@ namespace ZwajApp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserLoginDTO loginDto)
         {
-            try
-            {
+            //throw new  Exception("Custom Exceptios");
+            // try
+            // {
                 var userExist = await _repo.Login(loginDto.Username.ToLower(), loginDto.Password);
                 if (userExist == null)
                     return Unauthorized();
@@ -59,7 +60,7 @@ namespace ZwajApp.API.Controllers
                 };
                  _loggger.LogInformation( _config.GetSection("AppSettings:Token").Value);
 
-                SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
                 _loggger.LogInformation(key.ToString());
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
                 var tokenDiscriptor = new SecurityTokenDescriptor
@@ -75,13 +76,13 @@ namespace ZwajApp.API.Controllers
                     token = tokenHandler.WriteToken(token)
                 });
 
-            }
-            catch (System.Exception ex)
-            {
+            // }
+            // catch (System.Exception ex)
+            // {
 
-                _loggger.LogInformation(ex.Message);
-                return BadRequest();
-            }
+            //     _loggger.LogInformation(ex.Message);
+            //     return BadRequest();
+            // }
 
         }
     }

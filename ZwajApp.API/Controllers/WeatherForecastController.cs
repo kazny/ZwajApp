@@ -10,16 +10,13 @@ using ZwajApp.API.Data;
 
 namespace ZwajApp.API.Controllers
 {
+    
+
     [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<WeatherForecastController> _logger;
         public DataContext _context { get; }
 
@@ -29,6 +26,7 @@ namespace ZwajApp.API.Controllers
             _context = context;
             _logger = logger;
         }
+        // [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task< IActionResult> Get(int id)
         {
@@ -42,16 +40,6 @@ namespace ZwajApp.API.Controllers
         public async Task< IActionResult> Get()
         {
            return Ok( await _context.Values.ToListAsync());
-            /* var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)],
-                Name = "khalid"
-            })
-            .ToArray(); */
-           
         }
     }
 }
